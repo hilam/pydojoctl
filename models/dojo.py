@@ -7,11 +7,13 @@ class Evento:
     data: datetime
     duracao_prevista: int
     duracao_real: Optional[int]
+    ativo: Optional[int]
 
 
 class Participante:
     nome: str
     email: str
+    presente: Optional[int]
 
 
 class EventoAtuacao:
