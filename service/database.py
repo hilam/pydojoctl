@@ -21,8 +21,7 @@ def criar_base(con):
                       nome text, 
                       data text, 
                       duracao_prevista integer, 
-                      duracao_real integer, 
-                      price real
+                      duracao_real integer
                     )
                 '''
             )
