@@ -13,8 +13,9 @@ def conectar():
         print(erro)
 
 
-def criar_base(con):
-    # Evento
+def criar_base():
+    con = conectar()
+
     try:
         with con:
             con.execute('''CREATE TABLE IF NOT EXISTS evento (
@@ -72,45 +73,66 @@ def criar_base(con):
         print(erro)
 
 
-def inserir_evento(con, evento: Evento):
+def inserir_evento(evento: Evento):
+    con = conectar()
+
     try:
         con.execute('''INSERT into evento
             (nome, data, duracao_prevista, duracao_real, ativo)
             VALUES
             (:nome, :data, :duracao_prevista, :duracao_real, :ativo)
-        ''', evento)
+        ''', (
+            evento.nome, evento.data, evento.duracao_prevista, evento.duracao_real,
+            evento.ativo
+            )
+        )
     except sql.DatabaseError as erro:
         print(erro)
 
 
-def inserir_participante(con, participante: Participante):
+def inserir_participante(participante: Participante):
+    con = conectar()
+
     try:
         con.execute('''INSERT into participante
             (nome, email, presente)
             VALUES
             (:nome, :email, :presente)
-        ''', participante)
+        ''', (
+            participante.nome, participante.email, participante.presente
+            )
+        )
     except sql.DatabaseError as erro:
         print(erro)
 
 
-def inserir_configuracao(con, evento_config: EventoConfiguracao):
+def inserir_configuracao(evento_config: EventoConfiguracao):
+    con = conectar()
+
     try:
         con.execute('''INSERT into evento_config
             (evento, tempo_piloto, tempo_audiencia)
             VALUES
             (evento, tempo_piloto, tempo_audiencia)
-        ''', evento_config)
+        ''', (
+            evento_config.evento, evento_config.tempo_piloto, evento_config.tempo_audiencia
+            )
+        )
     except sql.DatabaseError as erro:
         print(erro)
 
 
-def inserir_atuacao(con, evento_atuacao: EventoAtuacao):
+def inserir_atuacao(evento_atuacao: EventoAtuacao):
+    con = conectar()
+
     try:
         con.execute('''INSERT into evento_atuacao
             (evento, participante, ordem_sorteio)
             VALUES
             (:evento, :participante, :ordem_sorteio)
-        ''', evento_atuacao)
+        ''', (
+            evento_atuacao.evento, evento_atuacao.participante, evento_atuacao.ordem_sorteio
+            )
+        )
     except sql.DatabaseError as erro:
         print(erro)
