@@ -12,6 +12,10 @@ typer = "^0.4.0"
 [tool.poetry.dev-dependencies]
 mypy = "^0.931"
 pytest = "^7.0.1"
+blue = "^0.7.0"
+bandit = "^1.7.2"
+prospector = "^1.6.0"
+pip-audit = "^1.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

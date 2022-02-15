@@ -4,7 +4,7 @@ from typing import List
 from models.dojo import Evento, EventoAtuacao, EventoConfiguracao, Participante
 
 
-def conectar():
+def conectar() -> sql.Connection:
     try:
         con = sql.connect('codedojo.db')
         con.row_factory = sql.Row
@@ -12,6 +12,7 @@ def conectar():
         return con
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
 
 def criar_base():
@@ -32,6 +33,7 @@ def criar_base():
             )
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
     # Participante
     try:
@@ -47,6 +49,7 @@ def criar_base():
             )
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
     # Configuração do evento
     try:
@@ -63,6 +66,7 @@ def criar_base():
             )
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
     # Atuação no evento
     try:
@@ -80,6 +84,7 @@ def criar_base():
             )
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
 
 def inserir_evento(evento: Evento):
@@ -101,6 +106,7 @@ def inserir_evento(evento: Evento):
             )
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
 
 def listar_eventos() -> List[Evento]:
@@ -113,6 +119,7 @@ def listar_eventos() -> List[Evento]:
                 eventos.append(Evento(**row))
     except sql.DatabaseError as erro:
         print(erro)
+        raise
     return eventos
 
 
@@ -127,6 +134,7 @@ def buscar_evento(evento_id) -> Evento:
             return Evento(**row)
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
 
 def inserir_participante(participante: Participante):
@@ -142,6 +150,7 @@ def inserir_participante(participante: Participante):
             )
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
 
 def inserir_configuracao(evento_config: EventoConfiguracao):
@@ -161,6 +170,7 @@ def inserir_configuracao(evento_config: EventoConfiguracao):
             )
     except sql.DatabaseError as erro:
         print(erro)
+        raise
 
 
 def inserir_atuacao(evento_atuacao: EventoAtuacao):
@@ -180,3 +190,4 @@ def inserir_atuacao(evento_atuacao: EventoAtuacao):
             )
     except sql.DatabaseError as erro:
         print(erro)
+        raise

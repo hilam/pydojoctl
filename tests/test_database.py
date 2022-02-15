@@ -13,5 +13,5 @@ def db():
 
 
 def test_criar_base(db):
-    with db as con:
-        criar_base(con)
+     with db as con:
+         criar_base()
