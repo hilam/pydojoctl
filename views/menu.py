@@ -12,12 +12,12 @@ def dojo_menu() -> Panel:
     )
 
     menu_opcoes = Table.grid(padding=1)
-    menu_opcoes.add_column(style="green", justify="left")
-    menu_opcoes.add_row("(1) Incluir evento")
-    menu_opcoes.add_row("(2) Configurar evento")
-    menu_opcoes.add_row("(3) Incluir participante")
-    menu_opcoes.add_row("(4) Sortear atuação")
-    menu_opcoes.add_row("(5) Iniciar evento")
+    menu_opcoes.add_column(style='green', justify='left')
+    menu_opcoes.add_row('(1) Incluir evento')
+    menu_opcoes.add_row('(2) Configurar evento')
+    menu_opcoes.add_row('(3) Incluir participante')
+    menu_opcoes.add_row('(4) Sortear atuação')
+    menu_opcoes.add_row('(5) Iniciar evento')
 
     message = Table.grid(padding=1)
     message.add_column()
@@ -26,13 +26,12 @@ def dojo_menu() -> Panel:
 
     message_panel = Panel(
         Align.center(
-            Group(menu_header, "\n", Align.center(menu_opcoes)),
-            vertical="middle",
+            Group(menu_header, '\n', Align.center(menu_opcoes)),
+            vertical='middle',
         ),
         box=box.ROUNDED,
         padding=(1, 2),
-        title="[b underline red]Opções",
-        border_style="bright_blue",
+        title='[b underline red]Opções',
+        border_style='bright_blue',
     )
     return message_panel
-
