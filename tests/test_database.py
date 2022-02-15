@@ -1,5 +1,6 @@
-import pytest
 import sqlite3 as sql
+
+import pytest
 
 from service.database import criar_base
 
