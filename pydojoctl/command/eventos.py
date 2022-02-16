@@ -3,10 +3,14 @@ from rich.console import Console
 from rich.prompt import IntPrompt, Prompt
 from rich.table import Table
 
-from models.dojo import Evento, EventoConfiguracao
-from service.database import (buscar_evento, inserir_configuracao,
-                              inserir_evento, listar_eventos)
-from views.header import header
+from pydojoctl.models.dojo import Evento, EventoConfiguracao
+from pydojoctl.service.database import (
+    buscar_evento,
+    inserir_configuracao,
+    inserir_evento,
+    listar_eventos,
+)
+from pydojoctl.views.header import header
 
 app = typer.Typer()
 console = Console()

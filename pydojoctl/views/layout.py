@@ -1,6 +1,6 @@
 from rich.layout import Layout
 
-from views.header import header
+from pydojoctl.views.header import header
 
 
 def basic_layout() -> Layout:

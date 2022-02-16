@@ -1,7 +1,12 @@
 import sqlite3 as sql
 from typing import List
 
-from models.dojo import Evento, EventoAtuacao, EventoConfiguracao, Participante
+from pydojoctl.models.dojo import (
+    Evento,
+    EventoAtuacao,
+    EventoConfiguracao,
+    Participante,
+)
 
 
 def conectar() -> sql.Connection:

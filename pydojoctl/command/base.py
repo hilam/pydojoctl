@@ -3,8 +3,8 @@ from rich.console import Console
 from rich.progress import track
 from rich.prompt import Confirm
 
-from service.database import criar_base
-from views.header import header
+from pydojoctl.service.database import criar_base
+from pydojoctl.views.header import header
 
 app = typer.Typer()
 console = Console()
@@ -12,7 +12,6 @@ console = Console()
 
 @app.command()
 def init():
-
     console.clear()
     console.print()
     console.print(header('Criação da base de dados'))

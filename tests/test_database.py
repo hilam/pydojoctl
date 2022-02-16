@@ -2,7 +2,7 @@ import sqlite3 as sql
 
 import pytest
 
-from src.service.database import criar_base
+from pydojoctl.service.database import criar_base
 
 
 @pytest.fixture

@@ -3,7 +3,7 @@ Programa para controlar um Code Dojo Online
 """
 import typer
 
-from command import base, eventos, participantes
+from pydojoctl.command import base, eventos, participantes
 
 app = typer.Typer()
 
@@ -16,7 +16,7 @@ app.add_typer(
 app.add_typer(
     participantes.app,
     name='participante',
-    help='Comando para manipulação de ' 'participantes',
+    help='Comando para manipulação de participantes',
 )
 
 if __name__ == '__main__':

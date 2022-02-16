@@ -5,14 +5,12 @@ run=poetry run
 install:
 	@poetry install
 format:
-	${run} blue src/
-	${run} isort src/
+	${run} blue pydojoctl/
 lint:
+	${run} blue --check pydojoctl/
 	${run} prospector
-	${run} blue --check src/
-	${run} isort --check src/
 test:
 	${run} pytest -v
 sec:
-	${run} bandit -r src/
+	${run} bandit -r pydojoctl/
 	${run} pip-audit
