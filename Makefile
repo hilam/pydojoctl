@@ -8,7 +8,7 @@ format:
 	${run} blue pydojoctl/
 lint:
 	${run} blue --check pydojoctl/
-	${run} prospector
+	${run} prospector --no-autodetect
 test:
 	${run} pytest -v
 sec:
