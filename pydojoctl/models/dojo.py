@@ -4,33 +4,33 @@ from typing import Optional
 
 @dataclass()
 class Evento:
-    id: Optional[int]
     nome: str
     data: str
     duracao_prevista: int
-    duracao_real: Optional[int]
-    ativo: Optional[int]
+    id: Optional[int] = None
+    duracao_real: Optional[int] = None
+    ativo: Optional[int] = None
 
 
 @dataclass()
 class Participante:
-    id: Optional[int]
     nome: str
     email: str
-    presente: Optional[int]
+    id: Optional[int] = None
+    presente: Optional[int] = None
 
 
 @dataclass()
 class EventoAtuacao:
-    id: Optional[int]
     evento: Evento
     participante: Participante
-    ordem_sorteio: Optional[int]
+    id: Optional[int] = None
+    ordem_sorteio: Optional[int] = None
 
 
 @dataclass()
 class EventoConfiguracao:
-    id: Optional[int]
     evento: Evento
     tempo_piloto: int
     tempo_audiencia: int
+    id: Optional[int] = None

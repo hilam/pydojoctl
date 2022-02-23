@@ -9,9 +9,9 @@ from pydojoctl.models.dojo import (
 )
 
 
-def conectar() -> sql.Connection:
+def conectar(database='codedojo.db') -> sql.Connection:
     try:
-        con = sql.connect('codedojo.db')
+        con = sql.connect(database)
         con.row_factory = sql.Row
         con.execute('PRAGMA foreign_keys=ON')
         return con
@@ -20,11 +20,9 @@ def conectar() -> sql.Connection:
         raise
 
 
-def criar_base():
-    con = conectar()
-
+def criar_base(connection=None):
     try:
-        with con:
+        with (connection if connection else conectar()) as con:
             con.execute(
                 """CREATE TABLE IF NOT EXISTS evento (
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,7 +40,7 @@ def criar_base():
 
     # Participante
     try:
-        with con:
+        with (connection if connection else conectar()) as con:
             con.execute(
                 """CREATE TABLE IF NOT EXISTS participante (
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -58,7 +56,7 @@ def criar_base():
 
     # Configuração do evento
     try:
-        with con:
+        with (connection if connection else conectar()) as con:
             con.execute(
                 """CREATE TABLE IF NOT EXISTS evento_config (
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -75,7 +73,7 @@ def criar_base():
 
     # Atuação no evento
     try:
-        with con:
+        with (connection if connection else conectar()) as con:
             con.execute(
                 """CREATE TABLE IF NOT EXISTS evento_atuacao (
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -92,10 +90,10 @@ def criar_base():
         raise
 
 
-def inserir_evento(evento: Evento):
+def inserir_evento(evento: Evento, connection=None):
     try:
-        with conectar() as con:
-            con.execute(
+        with (connection if connection else conectar()) as con:
+            return con.execute(
                 """INSERT into evento
                 (nome, data, duracao_prevista, duracao_real, ativo)
                 VALUES
@@ -114,10 +112,10 @@ def inserir_evento(evento: Evento):
         raise
 
 
-def listar_eventos() -> List[Evento]:
+def listar_eventos(connection=None) -> List[Evento]:
     eventos = []
     try:
-        with conectar() as con:
+        with (connection if connection else conectar()) as con:
             result = con.execute('SELECT * FROM evento')
             rows = result.fetchall()
             for row in rows:
@@ -128,9 +126,9 @@ def listar_eventos() -> List[Evento]:
     return eventos
 
 
-def buscar_evento(evento_id) -> Evento:
+def buscar_evento(evento_id, connection=None) -> Evento:
     try:
-        with conectar() as con:
+        with (connection if connection else conectar()) as con:
             result = con.execute(
                 'SELECT * FROM evento where id = :evento_id',
                 {'evento_id': evento_id},
@@ -142,10 +140,10 @@ def buscar_evento(evento_id) -> Evento:
         raise
 
 
-def inserir_participante(participante: Participante):
+def inserir_participante(participante: Participante, connection=None):
     try:
-        with conectar() as con:
-            con.execute(
+        with (connection if connection else conectar()) as con:
+            return con.execute(
                 """INSERT into participante
                 (nome, email, presente)
                 VALUES
@@ -158,10 +156,10 @@ def inserir_participante(participante: Participante):
         raise
 
 
-def inserir_configuracao(evento_config: EventoConfiguracao):
+def inserir_configuracao(evento_config: EventoConfiguracao, connection=None):
     try:
-        with conectar() as con:
-            con.execute(
+        with (connection if connection else conectar()) as con:
+            return con.execute(
                 """INSERT into evento_config
                 (evento, tempo_piloto, tempo_audiencia)
                 VALUES
@@ -178,10 +176,10 @@ def inserir_configuracao(evento_config: EventoConfiguracao):
         raise
 
 
-def inserir_atuacao(evento_atuacao: EventoAtuacao):
+def inserir_atuacao(evento_atuacao: EventoAtuacao, connection=None):
     try:
-        with conectar() as con:
-            con.execute(
+        with (connection if connection else conectar()) as con:
+            return con.execute(
                 """INSERT into evento_atuacao
                 (evento, participante, ordem_sorteio)
                 VALUES
